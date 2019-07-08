@@ -6,7 +6,6 @@ final class SetCwdTest extends \PHPUnit\Framework\TestCase
     private const STDERR = 2;
 
     private const BINARY_DIR = './bin-dir';
-    private const BINARY_SUBDIR = './bin-dir/subdir';
     private const COMMAND = './test.sh';
 
     /**
@@ -64,6 +63,9 @@ final class SetCwdTest extends \PHPUnit\Framework\TestCase
             'success subdir 1',
             trim($stdOut, "\r\n")
         );
+
+        echo 'stdout: ' . $stdOut . PHP_EOL;
+        echo 'stderr: ' . $stdErr . PHP_EOL;
 
         $this->assertEquals(
             '',
