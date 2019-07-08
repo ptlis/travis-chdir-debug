@@ -59,13 +59,13 @@ final class SetCwdTest extends \PHPUnit\Framework\TestCase
         $stdOut .= stream_get_contents($pipeList[self::STDOUT]);
         $stdErr .= stream_get_contents($pipeList[self::STDERR]);
 
+        echo 'stdout: ' . $stdOut . PHP_EOL;
+        echo 'stderr: ' . $stdErr . PHP_EOL;
+
         $this->assertEquals(
             'success subdir 1',
             trim($stdOut, "\r\n")
         );
-
-        echo 'stdout: ' . $stdOut . PHP_EOL;
-        echo 'stderr: ' . $stdErr . PHP_EOL;
 
         $this->assertEquals(
             '',
