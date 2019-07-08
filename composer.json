@@ -1,0 +1,15 @@
+{
+    "name": "ptlis/travis-chdir-debug",
+    "authors": [
+        {
+            "name": "ptlis",
+            "email": "ptlis@ptlis.net"
+        }
+    ],
+    "require": {
+        "php": "^7.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    }
+}
