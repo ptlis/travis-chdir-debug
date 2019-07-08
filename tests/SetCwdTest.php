@@ -5,8 +5,8 @@ final class SetCwdTest extends \PHPUnit\Framework\TestCase
     private const STDOUT = 1;
     private const STDERR = 2;
 
-    private const BINARY_DIR = './bin-dir';
-    private const COMMAND = './test.sh';
+    private const BINARY_DIR = './bin-dir/subdir';
+    private const COMMAND = './test';
 
     /**
      * Verify that chdir works correctly with shell_exec.
