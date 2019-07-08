@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo 'success'
+echo 'success subdir 2'
