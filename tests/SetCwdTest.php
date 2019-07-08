@@ -74,4 +74,48 @@ final class SetCwdTest extends \PHPUnit\Framework\TestCase
 
         chdir($prevCwd);
     }
+
+    /**
+     * Verify that relative path to binary works.
+     */
+    public function testRelativePathProcOpen()
+    {
+        // Setup process with proc_open
+        $pipeList = [];
+        $process = proc_open(
+            './bin-dir/test.sh',
+            [
+                self::STDOUT => ['pipe', 'w'],
+                self::STDERR => ['pipe', 'w']
+            ],
+            $pipeList
+        );
+
+        // Poll for completion
+        $status = proc_get_status($process);
+        $stdOut = '';
+        $stdErr = '';
+        while ($status['running']) {
+            $stdOut .= stream_get_contents($pipeList[self::STDOUT]);
+            $stdErr .= stream_get_contents($pipeList[self::STDERR]);
+            $status = proc_get_status($process);
+        }
+
+        // Ensure that any remaining output is read
+        $stdOut .= stream_get_contents($pipeList[self::STDOUT]);
+        $stdErr .= stream_get_contents($pipeList[self::STDERR]);
+
+        echo 'stdout: ' . $stdOut . PHP_EOL;
+        echo 'stderr: ' . $stdErr . PHP_EOL;
+
+        $this->assertEquals(
+            'success subdir 1',
+            trim($stdOut, "\r\n")
+        );
+
+        $this->assertEquals(
+            '',
+            $stdErr
+        );
+    }
 }
